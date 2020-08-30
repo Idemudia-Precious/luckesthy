@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Luckesthy: CBT </title>
+  <link rel="stylesheet" href="{% static 'exam/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'exam/indexx.css' %}">
+  <link rel="stylesheet" href="{% static 'exam/fa5/css/all.css' %}">
+  <script type="text/javascript">
+  function count() {
+    let score=0;
+    var radio = document.getElementsByName('option');
+    for(i = 0; i < radio.length; i++)
+    {
+      if(radio[i].checked && radio[i].id === radio[i].value)
+      {
+        score++;
+      }
+    }
+    alert("Dear Candidate, thanks for taking this TEST, click 'OK' to continue!");
+    document.getElementById("score").value = score;
+
+    //var retVal = confirm("Are you sure you want to submit?");//if(retVal == true)//{return true;}//else//{return false;}//alert(score);
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="head">
+      <h4><span id="head">Welcome to Luckesthy CBT</span></h4>
+      <img src="{% static 'exam/hhc.jpg' %}">
+    </div>
+    <div class="info-head row mb-3">
+      <div class="info col-md-6">
+        <p class="info-text"><i class="fas fa-graduation-cap" style="color:indigo;"></i><span style="font-weight:bolder;">Examination:</span> J.S.S 3 Mock Examination</p>
+        <p class="info-text"><i class="fas fa-user" style="color:#0f7d11;"></i><span style="font-weight:bolder;">Candidate:</span> {{ user.username }}</p>
+        <p class="info-text"><i class="fas fa-calendar-day" style="color:red;"></i><span style="font-weight:bolder;">Age:</span> {{ user.age }}</p>
+        <p class="info-text"><i class="fas fa-male" style="color:blue;"></i><span style="font-weight:bolder;">Gender:</span> {{ user.gender }}</p>
+        <p class="info-text"><i class="fas fa-book" style="color:#7d0f0f;" ></i><span style="font-weight:bolder;">Subject:</span> Christian Religious Studies</p>
+      </div>
+      <div class="info-head col-md-6">
+        <p class="info-text"><i class="far fa-clock"></i><span style="font-weight:bolder;">Remaining time</span></p>
+        <p class="info-text" id="timer" style="font-weight:800; color:red">01 : 00 : 00</p>
+        <form class="form-signin" action="{% url 'index' user.id %}" method="post">
+          {% csrf_token %}
+          <input type="text" id="score" name="score" class="sr-only">
+          <button id = "submit" onclick="count()" class="submit-btn btn btn-primary blink-bg" type="submit" name="submit"><i class="fas fa-location-arrow"></i>Submit</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="container-md">
+      <div class="buttons btn-group">
+        <button id="mathematics" class="mathematics btn btn-md btn-outline option" type="button" name="mathematics"><b>Objective</b></button>
+        <button id="mathematics2" class="mathematics2 btn btn-md btn-outline option" type="button" name="mathematics"><b>Theory</b></button>
+      </div>
+      <div class="">
+        <div class="mathematicsi container-md cover1">
+          <strong>OBJECTIVE</strong>
+          {% for each in mathsi %}
+          <div class="{{ each.no }}">
+            <p><span style="color:red;"><b>Question {{ each.no }}</b></p>
+            <p><b>{{ each.quest }}</b></p>
+            <form class="options">
+              {% csrf_token %}
+              <div><input id="{{ each.correct }}" type="radio" name="option"  value="{{ each.a }}"><label for="a">{{ each.a }}</label></div>
+              <div><input id="{{ each.correct }}" type="radio" name="option"  value="{{ each.b }}"><label for="b">{{ each.b }}</label></div>
+              <div><input id="{{ each.correct }}" type="radio" name="option"  value="{{ each.c }}"><label for="c">{{ each.c }}</label></div>
+              <div><input id="{{ each.correct }}" type="radio" name="option"  value="{{ each.d }}"><label for="d">{{ each.d }}</label></div>
+            </form>
+          </div>
+          {% empty %}
+          <h1>empty</h1>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="cover">
+        <div class="mathematicsii container-md">
+          <strong>THEORY</strong>
+          {% for each in mathsii %}
+          <div class="{{ each.no }}">
+            <p><span style="color:red;"><b>{{ each.no }} <span style="color:black;">{{ each.quest }}</span></b></p>
+          </div>
+          {% empty %}
+          <h1>empty</h1>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script type="text/javascript" src="{% static 'exam/index.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
+</body>
+</html>

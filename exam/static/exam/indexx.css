@@ -1,0 +1,86 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#head {
+  font-size: 1.5rem;
+}
+img {
+  margin-top: -4rem;
+  margin-left : 105%;
+  height: 3rem;
+  width: 3rem;
+}
+@media (min-width: 768px) {
+  img {
+    margin-left: 110%;
+  }
+}
+html {
+  font-size: 100%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  scroll-behavior: smooth;
+}
+header {
+  margin: 0;
+  position: relative;
+}
+.head{
+  background-color: blue;
+  text-align: center;
+  color: white;
+  font-family: Cambria;
+  width: 80%;
+  border-radius: 0 0 500px 0;
+  padding-top: 0.5rem;
+  height: 3rem;
+}
+.info-head {
+  padding: 1rem;
+}
+.info-text {
+  margin: 0;
+}
+.btn-group {
+
+}
+.btn-outline {
+  background-color: grey;
+  border: 1px solid black;
+}
+.options {
+  margin: 1.5rem;
+
+}
+.cover1 {
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-left: 0px;
+  width: 1000px;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cover {
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-left: 0;
+  width: 1000px;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.blink-bg {
+  color: #fff;
+  animation: none;
+}
+@keyframes blinkingBackground {
+  0% {background-color: #10c018;}
+  25% {background-color: #1056c0;}
+  50% {background-color: #ef0a1a;}
+  75% {background-color: #254878;}
+  100% {background-color: #04a1df;}
+}
